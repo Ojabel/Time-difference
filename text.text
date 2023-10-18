@@ -1,0 +1,208 @@
+
+
+
+
+
+
+$sql = "SELECT CONCAT(MOD(HOUR(TIMEDIFF(timein,timeout)),24),'HOURS' AS diiffe FROM data;";
+
+
+$sql = "SELECT timein,timeout, TIMEDIFF(timein,timeout) AS diiffe FROM data;";
+
+
+
+$sql=mysqli_query($conn,"UPDATE data SET diiffe = TIMEDIFF(timein,timeout)");
+
+
+
+
+<?php
+include('db.php');
+
+$sql=mysqli_query($conn,"UPDATE data SET diiffe = TIMEDIFF(timein,timeout)");
+
+
+$sql = "SELECT timein,timeout, TIMEDIFF(timein,timeout) AS diiffe FROM data;";
+$result = mysqli_query($conn,$sql);
+
+if (mysqli_num_rows($result)>0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+
+        
+        echo $row["timein"];
+        echo $row["timeout"];
+        echo $row["diiffe"];
+       
+       
+        
+
+
+
+    }
+    # code...
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$totaltime = (strtotime($time_out) - strtotime($time_in));
+
+                $hours = sprintf('%02d', intval($totaltime / 3600));
+
+                $seconds_remain = ($totaltime - ($hours * 3600)); 
+
+                $minutes = sprintf('%02d', intval($seconds_remain / 60));   
+                $seconds = sprintf('%02d' ,($seconds_remain - ($minutes * 60)));
+
+                $final = '';
+
+                if ($time_in == '' || $time_out == '')
+                {
+                    $final = '';
+                }
+                else
+                {
+                    $final .= $hours.':'.$minutes.':'.$seconds;
+                }
+
+
+
+
+
+
+$sql = "SELECT timein,timeout, TIMEDIFF(timein,timeout) AS diiffe FROM data;";
+$result = mysqli_stmt_init($conn);
+  
+mysqli_stmt_execute($result);
+          $resultl = mysqli_stmt_get_result($result);
+        if (mysqli_num_rows($resultl) > 0){
+            while ($row = mysqli_fetch_assoc($resultl)){
+      ?>
+
+
+SELECT timein,timeout, TIMESTAMPDIFF(HOUR,timein,timeout) AS diiffe FROM data
+
+
+
+
+SELECT timein, timeout, -- convert back to time sec_to_time( -- remove any time beyond 24 hours mod( -- convert the time seconds and add the number of seconds in one day time_to_sec( -- get the time difference timediff(timein,timeout) ) + 86400 ,86400 ) ) diiffe FROM data
+
+
+
+
+
+
+INSERT INTO `data`(`timein`, `timeout`, `diiffe`) VALUES ('08:00','12:00',TIMEDIFF(timein,timeout));
+
+
+
+
+<table cellpadding="10" cellspacing="5" border="3">
+<thead>
+        <tr>
+          <th>Time In</th>
+          <th>Time Out</th>
+          <th>Total time</th>
+     
+        </tr>
+      </thead>
+  <tbody>
+<?php
+include('db.php');
+
+$sql=mysqli_query($conn,"UPDATE data SET diiffe = TIMEDIFF(timein,timeout)");
+
+$sql = "SELECT timein,timeout, TIMEDIFF(timein,timeout) AS diiffe FROM data;";
+$result = mysqli_stmt_init($conn);
+if (!mysqli_stmt_prepare($result, $sql)) {
+    echo '<p class="error">SQL Error</p>';
+}
+else{
+  mysqli_stmt_execute($result);
+    $resultl = mysqli_stmt_get_result($result);
+  if (mysqli_num_rows($resultl) > 0){
+      while ($row = mysqli_fetch_assoc($resultl)){
+?> 
+        <TR>
+        <TD><?php echo $row["timein"];?></TD>
+        <TD><?php echo $row["timeout"];?></TD>
+        <TD><?php echo $row["diiffe"];?></TD>
+        
+        </TR>
+        
+<?php
+
+    }
+    # code...
+  }
+}
+?>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+$servername = "localhost";
+$username = "username";
+$password = "password";
+$dbname = "myDB";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT id, firstname, lastname FROM MyGuests";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo "<br> id: ". $row["id"]. " - Name: ". $row["firstname"]. " " . $row["lastname"] . "<br>";
+    }
+} else {
+    echo "0 results";
+}
+
+$conn->close();
+?>
+
+</body>
+</html>
